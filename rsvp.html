@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+  <meta name="theme-color"
+        content="#e8c86a">
+
+  <title>
+    Confirmar presença | Renato & Priscilla
+  </title>
+
+  <link rel="preconnect"
+        href="https://fonts.googleapis.com">
+
+  <link rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+        rel="stylesheet">
+
+  <link rel="stylesheet"
+        href="style.css">
+
+</head>
+
+<body class="inner-page">
+
+<header class="inner-header">
+
+  <a href="index.html"
+     class="back-link">
+    ← Voltar para o site
+  </a>
+
+  <div class="inner-header-content">
+
+    <p class="eyebrow">
+      💛 RENATO & PRISCILLA 💛
+    </p>
+
+    <h1>
+      Confirme sua presença
+    </h1>
+
+    <p>
+      Você vem comemorar esse dia especial com a gente?
+      ❤️
+    </p>
+
+  </div>
+
+</header>
+
+
+<main>
+
+<section class="section rsvp-section">
+
+  <div class="rsvp-card">
+
+    <div class="section-heading centered">
+
+      <span class="section-kicker">
+        RSVP
+      </span>
+
+      <h2>
+        Quem vai estar com a gente?
+      </h2>
+
+      <p>
+        Informe os convidados que estarão presentes.
+      </p>
+
+    </div>
+
+
+    <form id="rsvp-form"
+          class="form">
+
+      <div id="guests-container">
+
+        <div class="guest-item">
+
+          <div class="guest-number">
+            Convidado 1
+          </div>
+
+          <label>
+            Nome completo
+
+            <input
+              type="text"
+              name="guestName[]"
+              placeholder="Digite o nome completo"
+              required>
+          </label>
+
+          <label>
+            Telefone / WhatsApp
+
+            <input
+              type="tel"
+              name="guestPhone[]"
+              placeholder="(21) 99999-9999"
+              required>
+          </label>
+
+        </div>
+
+      </div>
+
+
+      <button
+        type="button"
+        id="add-guest"
+        class="btn btn-outline full">
+
+        ➕ Adicionar outro convidado
+
+      </button>
+
+
+      <button
+        class="btn btn-primary full"
+        type="submit">
+
+        💕 Confirmar presença
+
+      </button>
+
+    </form>
+
+
+    <div id="rsvp-success"
+         class="success-message hidden">
+
+      <strong>
+        🎉 PRESENÇAS CONFIRMADAS!
+      </strong>
+
+      <p>
+        Renato e Priscilla já estão contando os dias
+        para comemorar com vocês!
+      </p>
+
+      <a
+        href="index.html"
+        class="btn btn-dark">
+
+        ❤️ Voltar ao site
+
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+</main>
+
+
+<footer>
+
+  <h2>
+    Renato & Priscilla
+  </h2>
+
+  <p>
+    11.10.2026
+  </p>
+
+  <p>
+    Amor e resenha para a vida toda. ❤️
+  </p>
+
+</footer>
+
+
+<script src="script.js"></script>
+
+</body>
+
+</html>

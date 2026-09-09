@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#e8c86a">
+  <meta name="description" content="Casamento Renato & Priscilla — 11 de outubro de 2026. Amor e resenha para a vida toda.">
+  <title>Renato & Priscilla | Nosso grande dia</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="hero" id="inicio">
+
+  <div class="hero-pattern"></div>
+
+  <div class="hero-content">
+
+    <p class="eyebrow">💛 AMOR E RESENHA 💛</p>
+
+    <h1>Renato <span>&</span> Priscilla</h1>
+
+    <p class="hero-subtitle">
+      Nosso grande dia está chegando!
+    </p>
+
+    <div class="date-badge">
+      11 • 10 • 2026
+    </div>
+
+    <p class="hero-info">
+      📍 Olaria, Rio de Janeiro &nbsp; • &nbsp; 🕛 12h
+    </p>
+
+    <div class="hero-buttons">
+
+      <a class="btn btn-primary" href="rsvp.html">
+        💌 Confirmar presença
+      </a>
+
+      <a class="btn btn-outline" href="presentes.html">
+        🎁 Lista de presentes
+      </a>
+
+    </div>
+
+  </div>
+
+</header>
+
+<main>
+
+  <section class="section countdown-section">
+
+    <div class="section-heading">
+
+      <span class="section-kicker">
+        CONTAGEM REGRESSIVA
+      </span>
+
+      <h2>
+        Está chegando! ⏳
+      </h2>
+
+    </div>
+
+    <div id="countdown" class="countdown" aria-live="polite">
+
+      <div>
+        <strong id="days">--</strong>
+        <span>dias</span>
+      </div>
+
+      <div>
+        <strong id="hours">--</strong>
+        <span>horas</span>
+      </div>
+
+      <div>
+        <strong id="minutes">--</strong>
+        <span>minutos</span>
+      </div>
+
+      <div>
+        <strong id="seconds">--</strong>
+        <span>segundos</span>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="section story-section" id="historia">
+
+    <div class="story-card">
+
+      <span class="big-heart">❤️</span>
+
+      <div class="section-heading">
+
+        <span class="section-kicker">
+          NOSSA HISTÓRIA
+        </span>
+
+        <h2>
+          Uma história de amor, risadas e muita resenha
+        </h2>
+
+      </div>
+
+      <p>
+        Algumas histórias começam por acaso.
+        Outras parecem ter sido escritas pelo destino.
+      </p>
+
+      <p>
+        A nossa começou com encontros, risadas,
+        momentos inesquecíveis e, principalmente, muito amor.
+      </p>
+
+      <p>
+        Entre uma resenha e outra, descobrimos que a vida fica
+        muito melhor quando temos alguém especial para dividir cada momento.
+      </p>
+
+      <p>
+        E agora chegou a hora de celebrar o nosso amor ao lado
+        das pessoas que fazem parte da nossa história. ❤️
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <section class="section message-section">
+
+    <div class="message-card">
+
+      <span class="quote-mark">“</span>
+
+      <p>
+        Mais do que presentes, queremos ter vocês ao nosso lado nesse dia.
+      </p>
+
+      <p>
+        Preparem o coração, o sorriso e a disposição...
+      </p>
+
+      <p class="highlight">
+        Porque vai ter amor, alegria, pagode e muita resenha! 😂🥂❤️
+      </p>
+
+      <p>
+        Esperamos vocês!
+      </p>
+
+      <p>
+        Com carinho,<br>
+        <strong>Renato & Priscilla</strong>
+      </p>
+
+    </div>
+
+  </section>
+
+</main>
+
+
+<footer>
+
+  <h2>Renato & Priscilla</h2>
+
+  <p>11.10.2026</p>
+
+  <p>
+    Amor e resenha para a vida toda. ❤️
+  </p>
+
+</footer>
+
+
+<script>
+
+const WEDDING_DATE =
+  new Date("2026-10-11T12:00:00-03:00");
+
+function updateCountdown() {
+
+  const now = new Date();
+
+  const difference = WEDDING_DATE - now;
+
+  if (difference <= 0) {
+
+    document.getElementById("countdown").innerHTML =
+      '<div style="grid-column:1/-1">' +
+      '<strong>🎉 CHEGOU O GRANDE DIA!</strong>' +
+      '<span>Renato & Priscilla esperam vocês!</span>' +
+      '</div>';
+
+    return;
+  }
+
+  const totalSeconds =
+    Math.floor(difference / 1000);
+
+  const days =
+    Math.floor(totalSeconds / 86400);
+
+  const hours =
+    Math.floor((totalSeconds % 86400) / 3600);
+
+  const minutes =
+    Math.floor((totalSeconds % 3600) / 60);
+
+  const seconds =
+    totalSeconds % 60;
+
+  document.getElementById("days").textContent =
+    String(days).padStart(2, "0");
+
+  document.getElementById("hours").textContent =
+    String(hours).padStart(2, "0");
+
+  document.getElementById("minutes").textContent =
+    String(minutes).padStart(2, "0");
+
+  document.getElementById("seconds").textContent =
+    String(seconds).padStart(2, "0");
+}
+
+updateCountdown();
+
+setInterval(updateCountdown, 1000);
+
+</script>
+
+</body>
+</html>

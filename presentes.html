@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+  <meta name="theme-color"
+        content="#e8c86a">
+
+  <title>
+    Lista de presentes | Renato & Priscilla
+  </title>
+
+  <link rel="preconnect"
+        href="https://fonts.googleapis.com">
+
+  <link rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+        rel="stylesheet">
+
+  <link rel="stylesheet"
+        href="style.css">
+
+</head>
+
+<body class="inner-page">
+
+<header class="inner-header">
+
+  <a href="index.html"
+     class="back-link">
+    ← Voltar para o site
+  </a>
+
+  <div class="inner-header-content">
+
+    <p class="eyebrow">
+      🎁 RENATO & PRISCILLA 🎁
+    </p>
+
+    <h1>
+      Lista de presentes
+    </h1>
+
+    <p>
+      Escolha um mimo e faça parte da nossa história. ❤️
+    </p>
+
+  </div>
+
+</header>
+
+
+<main>
+
+<section class="section gifts-section">
+
+  <div class="section-heading centered">
+
+    <span class="section-kicker">
+      LISTA DE PRESENTES
+    </span>
+
+    <h2>
+      Presentes com amor e um pouco de resenha 😂
+    </h2>
+
+    <p>
+      Os presentes abaixo são simbólicos.
+      Escolha um mimo, registre seu nome e faça o Pix. ❤️
+    </p>
+
+  </div>
+
+  <div id="gift-categories"
+       class="gift-categories">
+  </div>
+
+</section>
+
+</main>
+
+
+<footer>
+
+  <h2>
+    Renato & Priscilla
+  </h2>
+
+  <p>
+    11.10.2026
+  </p>
+
+  <p>
+    Amor e resenha para a vida toda. ❤️
+  </p>
+
+</footer>
+
+
+<!-- MODAL -->
+
+<div id="gift-modal"
+     class="modal hidden"
+     role="dialog"
+     aria-modal="true"
+     aria-labelledby="modal-title">
+
+  <div class="modal-overlay"
+       data-close-modal>
+  </div>
+
+  <div class="modal-box">
+
+    <button
+      class="modal-close"
+      type="button"
+      data-close-modal
+      aria-label="Fechar">
+
+      ×
+
+    </button>
+
+    <span id="modal-icon"
+          class="modal-icon">
+      🎁
+    </span>
+
+    <span class="section-kicker">
+      SEU PRESENTE
+    </span>
+
+    <h2 id="modal-title">
+      Presente
+    </h2>
+
+    <p id="modal-description"
+       class="modal-description">
+    </p>
+
+    <div class="selected-value">
+
+      Valor simbólico:
+
+      <strong id="modal-value">
+        R$ 0,00
+      </strong>
+
+    </div>
+
+
+    <form id="gift-form"
+          class="form">
+
+      <input type="hidden"
+             id="gift-id">
+
+
+      <label>
+
+        Seu nome completo
+
+        <input
+          type="text"
+          id="gift-name"
+          required
+          placeholder="Digite seu nome">
+
+      </label>
+
+
+      <div class="pix-box">
+
+        <span>
+          Chave Pix
+        </span>
+
+        <strong id="pix-key">
+          21964143316
+        </strong>
+
+        <button
+          type="button"
+          class="copy-btn"
+          id="copy-pix">
+
+          📋 Copiar chave Pix
+
+        </button>
+
+        <small id="copy-feedback"></small>
+
+      </div>
+
+
+      <button
+        class="btn btn-primary full"
+        type="submit">
+
+        ❤️ Confirmar meu presente
+
+      </button>
+
+    </form>
+
+
+    <div id="gift-success"
+         class="success-message hidden">
+
+      <strong>
+        🎉 Presente registrado!
+      </strong>
+
+      <p>
+        Obrigado pelo carinho.
+        Agora é só realizar o Pix. ❤️
+      </p>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<div id="toast"
+     class="toast"
+     role="status">
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
