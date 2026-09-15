@@ -128,9 +128,18 @@ function openGiftModal(data){
   document.getElementById("gift-success").classList.add("hidden");
   document.getElementById("gift-form").classList.remove("hidden");
   document.getElementById("copy-feedback").textContent="";
+
+  const proof=document.getElementById("payment-proof");
+  const status=document.getElementById("payment-status");
+  const button=document.getElementById("confirm-gift-button");
+  if(proof) proof.value="";
+  if(status) status.textContent="";
+  if(button){ button.disabled=true; button.textContent="❤️ Anexe o comprovante para confirmar"; }
+
   document.getElementById("gift-modal").classList.remove("hidden");
   document.body.style.overflow="hidden";
 }
+
 function closeGiftModal(){
   const modal=document.getElementById("gift-modal");
   if(!modal)return;
@@ -191,25 +200,97 @@ function setupRsvp(){
   });
 }
 
+function readFileAsDataURL(file){
+  return new Promise((resolve,reject)=>{
+    const reader=new FileReader();
+    reader.onload=()=>resolve(reader.result);
+    reader.onerror=()=>reject(reader.error || new Error("Não foi possível ler o arquivo."));
+    reader.readAsDataURL(file);
+  });
+}
+
 function setupGiftForm(){
   const form=document.getElementById("gift-form");
+  const proof=document.getElementById("payment-proof");
+  const button=document.getElementById("confirm-gift-button");
+  const status=document.getElementById("payment-status");
   if(!form)return;
+
+  if(proof){
+    proof.addEventListener("change",()=>{
+      const file=proof.files && proof.files[0];
+      if(!file){
+        if(button){button.disabled=true;button.textContent="❤️ Anexe o comprovante para confirmar";}
+        if(status)status.textContent="";
+        return;
+      }
+
+      const allowed=["image/jpeg","image/png","image/webp","application/pdf"];
+      const maxSize=2*1024*1024;
+      if(!allowed.includes(file.type)){
+        proof.value="";
+        if(button){button.disabled=true;button.textContent="❤️ Anexe um comprovante válido";}
+        if(status)status.textContent="Formato não permitido. Use JPG, PNG, WEBP ou PDF.";
+        return;
+      }
+      if(file.size>maxSize){
+        proof.value="";
+        if(button){button.disabled=true;button.textContent="❤️ Comprovante acima de 2 MB";}
+        if(status)status.textContent="O comprovante precisa ter no máximo 2 MB.";
+        return;
+      }
+
+      if(button){button.disabled=false;button.textContent="❤️ Confirmar meu presente";}
+      if(status)status.textContent="✓ Comprovante anexado. Você já pode confirmar o presente.";
+    });
+  }
+
   form.addEventListener("submit",async event=>{
     event.preventDefault();
-    const button=event.submitter; button.disabled=true; button.textContent="Registrando...";
-    const gift=JSON.parse(document.getElementById("gift-id").value);
-    const payload={
-      type:"gift",timestamp:new Date().toISOString(),
-      name:document.getElementById("gift-name").value.trim(),
-      gift:gift.name,value:gift.value,pix:PIX_KEY
-    };
+    const button=event.submitter;
+    const file=proof && proof.files ? proof.files[0] : null;
+    const name=document.getElementById("gift-name").value.trim();
+
+    if(!name){showToast("Digite seu nome completo.");return;}
+    if(!file){showToast("Anexe o comprovante do Pix para confirmar.");return;}
+    if(file.size>2*1024*1024){showToast("O comprovante deve ter no máximo 2 MB.");return;}
+
+    button.disabled=true;
+    button.textContent="Confirmando...";
+    if(status)status.textContent="Enviando confirmação...";
+
     try{
+      const gift=JSON.parse(document.getElementById("gift-id").value);
+      const dataUrl=await readFileAsDataURL(file);
+      const proofBase64=dataUrl.split(",")[1] || "";
+
+      if(!proofBase64)throw new Error("Comprovante inválido.");
+
+      const payload={
+        type:"gift",
+        timestamp:new Date().toISOString(),
+        name,
+        gift:gift.name,
+        value:gift.value,
+        pix:PIX_KEY,
+        paymentStatus:"PAGO",
+        proofMimeType:file.type,
+        proofBase64
+      };
+
       await sendToGoogleSheets(payload);
+
+      // O comprovante não é salvo pelo site. Após o envio, removemos a referência do input.
+      proof.value="";
+      if(status)status.textContent="";
       form.classList.add("hidden");
       document.getElementById("gift-success").classList.remove("hidden");
     }catch(error){
-      console.error(error); showToast("Não foi possível registrar agora. Tente novamente.");
-      button.disabled=false; button.textContent="❤️ Confirmar meu presente";
+      console.error(error);
+      showToast("Não foi possível registrar agora. Tente novamente.");
+      button.disabled=false;
+      button.textContent="❤️ Confirmar meu presente";
+      if(status)status.textContent="Não foi possível enviar. Tente novamente.";
     }
   });
 }

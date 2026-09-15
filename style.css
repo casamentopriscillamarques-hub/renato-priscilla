@@ -98,3 +98,17 @@ footer{text-align:center;padding:50px 20px;background:var(--brown);color:var(--b
   .location-icon { font-size: 3rem; }
   .map-wrapper iframe { height: 300px; }
 }
+
+/* Confirmação de pagamento do presente */
+.payment-instruction{
+  padding:15px;
+  background:var(--butter-light);
+  border-left:4px solid var(--terracotta);
+  border-radius:12px;
+}
+.payment-instruction strong{display:block;margin-bottom:4px}
+.payment-instruction p{font-size:.86rem;color:var(--brown-light)}
+.form input[type="file"]{padding:11px;background:var(--paper);cursor:pointer}
+.form small{font-weight:500;color:var(--brown-light)}
+.payment-status{min-height:20px;color:var(--terracotta);font-weight:700;font-size:.85rem}
+#confirm-gift-button:disabled{opacity:.55;cursor:not-allowed;transform:none;box-shadow:none}

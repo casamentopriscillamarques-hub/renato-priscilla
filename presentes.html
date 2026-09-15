@@ -49,23 +49,35 @@
 
     <form id="gift-form" class="form">
       <input type="hidden" id="gift-id">
+
       <label>Seu nome completo
         <input type="text" id="gift-name" required placeholder="Digite seu nome">
       </label>
 
       <div class="pix-box">
-        <span>Chave Pix</span>
+        <span>Chave Pix para pagamento</span>
         <strong id="pix-key">21964143316</strong>
         <button type="button" class="copy-btn" id="copy-pix">📋 Copiar chave Pix</button>
         <small id="copy-feedback"></small>
       </div>
 
-      <button class="btn btn-primary full" type="submit">❤️ Confirmar meu presente</button>
+      <div class="payment-instruction">
+        <strong>🔐 Primeiro faça o Pix</strong>
+        <p>Realize o pagamento do valor do presente na chave acima. Depois, anexe o comprovante para liberar a confirmação.</p>
+      </div>
+
+      <label>Comprovante do Pix
+        <input type="file" id="payment-proof" accept="image/jpeg,image/png,image/webp,application/pdf" required>
+        <small>JPG, PNG, WEBP ou PDF • máximo de 2 MB. O arquivo será usado somente para o envio e não será armazenado.</small>
+      </label>
+      <div id="payment-status" class="payment-status" aria-live="polite"></div>
+
+      <button class="btn btn-primary full" id="confirm-gift-button" type="submit" disabled>❤️ Confirmar meu presente</button>
     </form>
 
     <div id="gift-success" class="success-message hidden">
-      <strong>🎉 Presente registrado!</strong>
-      <p>Obrigado pelo carinho. Agora é só realizar o Pix. ❤️</p>
+      <strong>🎉 Presente confirmado como PAGO!</strong>
+      <p>Seu presente foi registrado na nossa lista. Obrigado pelo carinho! ❤️</p>
     </div>
   </div>
 </div>
